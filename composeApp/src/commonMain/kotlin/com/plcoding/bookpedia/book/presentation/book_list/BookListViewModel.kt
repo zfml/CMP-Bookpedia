@@ -44,6 +44,7 @@ class BookListViewModel(
                 else -> flow {
                     bookRepository.searchBooks(query)
                         .onSuccess { searchResults ->
+                            cachedBooks = searchResults
                             emit(Result.Success(searchResults))
                         }
                         .onError { error ->
